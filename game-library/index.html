@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="./icon.png">
+  <title>游戏试玩</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      color: #182342;
+      background: #eef3ff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      padding: 48px 20px;
+      overflow: hidden;
+      background: radial-gradient(circle at 5% 3%, rgba(107,124,255,.22), transparent 31%),
+        radial-gradient(circle at 94% 12%, rgba(69,211,185,.18), transparent 27%),
+        linear-gradient(145deg, #f7f9ff 0%, #edf2ff 50%, #f9fbff 100%);
+    }
+    .page-shell {
+      width: 100%;
+      max-width: 680px;
+      height: calc(100vh - 96px);
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+    }
+    .page-header { margin: 0 0 28px; padding: 0 8px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      color: #6874bc;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      box-shadow: 0 5px 16px rgba(89,104,179,.10);
+    }
+    .eyebrow::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #5c6cff;
+      box-shadow: 0 0 0 4px rgba(92,108,255,.12);
+      content: "";
+    }
+    h1 { margin: 13px 0 7px; font-size: clamp(28px, 5vw, 38px); line-height: 1.1; }
+    .page-header p { color: #72809f; font-size: 15px; }
+    .game-list {
+      display: grid;
+      gap: 14px;
+      width: 100%;
+      min-height: 0;
+      flex: 1;
+      padding: 2px 8px 28px;
+      overflow-y: auto;
+      scrollbar-color: #b8c2ef transparent;
+      scrollbar-width: thin;
+    }
+    .game-list::-webkit-scrollbar { width: 7px; }
+    .game-list::-webkit-scrollbar-track { background: transparent; }
+    .game-list::-webkit-scrollbar-thumb { background: #b8c2ef; border-radius: 999px; }
+    .game-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 108px;
+      padding: 14px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(208,217,242,.9);
+      border-radius: 24px;
+      box-shadow: 0 9px 25px rgba(49,68,128,.08);
+      color: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .game-item::after {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(#7280ff, #4ecab4);
+      border-radius: 4px;
+      content: "";
+      opacity: 0;
+      transition: opacity .22s ease;
+    }
+    .game-item:hover { border-color: rgba(113,128,255,.45); box-shadow: 0 16px 34px rgba(59,78,147,.16); transform: translateY(-3px); }
+    .game-item:hover::after { opacity: 1; }
+    .game-cover { width: 80px; height: 80px; flex: 0 0 80px; position: relative; }
+    .game-icon { display: block; width: 100%; height: 100%; border-radius: 20px; object-fit: cover; background: #dfe6f8; box-shadow: 0 8px 15px rgba(27,43,98,.20); }
+    .engine-icon { position: absolute; right: -8px; bottom: -8px; width: 42px; height: 42px; object-fit: contain; background: transparent; border: 0; border-radius: 12px; filter: drop-shadow(0 5px 7px rgba(17,31,71,.30)); }
+    .game-info { display: flex; flex: 1; flex-direction: column; min-width: 0; }
+    .game-name { overflow: hidden; font-size: clamp(17px, 3vw, 21px); font-weight: 800; line-height: 1.3; text-overflow: ellipsis; white-space: nowrap; }
+    .game-hint { margin-top: 6px; color: #8a96b0; font-size: 13px; font-weight: 600; }
+    .launch-arrow { display: grid; width: 32px; height: 32px; flex: 0 0 32px; place-items: center; border-radius: 50%; background: #f0f3ff; color: #6574df; font-size: 20px; transition: color .22s ease, background .22s ease, transform .22s ease; }
+    .game-item:hover .launch-arrow { background: #6574df; color: #fff; transform: translateX(2px); }
+    @media (max-width: 480px) {
+      body { padding: 32px 16px; }
+      .page-shell { height: calc(100vh - 64px); }
+      .page-header { margin-bottom: 22px; }
+      .game-item { gap: 14px; min-height: 92px; border-radius: 20px; }
+      .game-cover { width: 64px; height: 64px; flex-basis: 64px; }
+      .game-icon { border-radius: 16px; }
+      .engine-icon { right: -7px; bottom: -7px; width: 34px; height: 34px; border-radius: 10px; }
+      .launch-arrow { width: 28px; height: 28px; flex-basis: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="page-header">
+      <span class="eyebrow">GAME LIBRARY</span>
+      <h1>挑选一款游戏开始吧</h1>
+      <p>轻点卡片，即刻进入试玩。</p>
+    </header>
+    <div class="game-list" id="gameList"></div>
+  </main>
+  <script src="./games.js"></script>
+  <script>
+    const gameList = document.getElementById('gameList');
+    games.forEach((game) => {
+      const item = document.createElement('a');
+      item.className = 'game-item';
+      item.href = game.url;
+      item.target = '_blank';
+      item.rel = 'noopener noreferrer';
+      item.innerHTML = `
+        <div class="game-cover">
+          <img class="game-icon" src="${game.gameIcon}" alt="${game.name}">
+          <img class="engine-icon" src="${game.engineIcon}" alt="游戏引擎">
+        </div>
+        <div class="game-info">
+          <span class="game-name">${game.name}</span>
+          <span class="game-hint">点击开始试玩</span>
+        </div>
+        <span class="launch-arrow" aria-hidden="true">→</span>`;
+      gameList.appendChild(item);
+    });
+  </script>
+</body>
+</html>
