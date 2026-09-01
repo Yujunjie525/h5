@@ -13,6 +13,5 @@ const games = [
   { name: "垃圾很忙", url: resolveGameUrl("./RefuseClassification_preview/index.html"), gameIcon: "./assets/icon/refuse_icon.png", engineIcon: "./assets/game-engine-badges/cocos.png" },
   { name: "火柴人战争英雄", url: resolveGameUrl("./DanWuXuFa_preview/index.html"), gameIcon: "./assets/icon/danwuxufa_icon.png", engineIcon: "./assets/game-engine-badges/cocos.png" },
   { name: "画图和填色", url: resolveGameUrl("./Draw/index.html"), gameIcon: "./assets/icon/draw_icon.png", engineIcon: "./assets/game-engine-badges/cocos.png" },
-  { name: "果汁方块派对", url: resolveGameUrl("./fruit_puzzle_cocos_preview/index.html"), gameIcon: "./assets/icon/fruit_icon.png", engineIcon: "./assets/game-engine-badges/cocos.png" },
-  { name: "果汁方块派对", url: resolveGameUrl("./fruit_puzzle_layaair_preview/index.html"), gameIcon: "./assets/icon/fruit_icon.png", engineIcon: "./assets/game-engine-badges/layaair.png" }
+  { name: "果汁方块派对", url: resolveGameUrl("./fruit_puzzle_cocos_preview/index.html"), gameIcon: "./assets/icon/fruit_icon.png", engineIcon: "./assets/game-engine-badges/cocos.png" }
 ];
